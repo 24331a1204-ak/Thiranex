@@ -3,251 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to my portfolio. I'm a full-stack developer specializing in semantic HTML, accessible web design, and modern web technologies.">
-    <meta name="keywords" content="portfolio, developer, web design, accessibility, HTML5, WCAG">
-    <meta name="author" content="Karthik Amara">
-    <meta name="theme-color" content="#2c3e50">
-    
-    <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://karthikamara04-sudo.github.io/portfolio-website/">
-    <meta property="og:title" content="Karthik Amara - Full Stack Developer">
-    <meta property="og:description" content="Discover my portfolio of accessible, semantic HTML5 projects">
-    <meta property="og:image" content="https://karthikamara04-sudo.github.io/portfolio-website/assets/og-image.jpg">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Karthik Amara - Full Stack Developer">
-    <meta name="twitter:description" content="Discover my portfolio of accessible, semantic HTML5 projects">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://karthikamara04-sudo.github.io/portfolio-website/">
-    
-    <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    
-    <title>Karthik Amara - Full Stack Developer | Portfolio</title>
+    <title>Todo List Application</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Skip to main content link for keyboard navigation -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <div class="navbar-container">
-            <div class="logo" role="img" aria-label="Karthik Amara logo">
-                <a href="index.html" aria-current="page">Karthik Amara</a>
+    <div class="container">
+        <header class="header">
+            <h1>📋 My Tasks</h1>
+            <p class="subtitle">Stay organized and productive</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <input
+                    type="text"
+                    id="taskInput"
+                    class="task-input"
+                    placeholder="Add a new task..."
+                    autocomplete="off"
+                />
+                <button id="addBtn" class="add-btn">
+                    <span class="btn-icon">+</span>
+                    <span class="btn-text">Add Task</span>
+                </button>
             </div>
-            
-            <!-- Hamburger Menu for Mobile -->
-            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
-                <li><a href="pages/about.html" class="nav-link">About</a></li>
-                <li><a href="pages/projects.html" class="nav-link">Projects</a></li>
-                <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero" aria-labelledby="hero-heading">
-            <div class="hero-content">
-                <h1 id="hero-heading">Hi, I'm Karthik Amara</h1>
-                <p class="hero-subtitle">Full Stack Developer | Accessibility Advocate | Open Source Contributor</p>
-                <p class="hero-description">
-                    I build semantically correct, accessible, and performant web applications that serve everyone.
-                </p>
-                <div class="hero-cta">
-                    <a href="pages/projects.html" class="cta-button primary">View My Projects</a>
-                    <a href="pages/contact.html" class="cta-button secondary">Get In Touch</a>
-                </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">
+                    All <span class="filter-count">0</span>
+                </button>
+                <button class="filter-btn" data-filter="active">
+                    Active <span class="filter-count">0</span>
+                </button>
+                <button class="filter-btn" data-filter="completed">
+                    Completed <span class="filter-count">0</span>
+                </button>
             </div>
-            <figure class="hero-image">
-                <img src="assets/hero-image.svg" alt="Illustration of a developer working on code" loading="lazy">
-            </figure>
-        </section>
-        
-        <!-- Featured Work Section -->
-        <section class="featured-work" aria-labelledby="featured-heading">
-            <div class="container">
-                <h2 id="featured-heading">Featured Work</h2>
-                <p class="section-subtitle">A selection of my recent projects</p>
-                
-                <div class="project-grid">
-                    <!-- Project Card 1 -->
-                    <article class="project-card" role="article">
-                        <div class="project-image">
-                            <img src="assets/project-1.jpg" alt="E-commerce platform built with React and Node.js" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>E-Commerce Platform</h3>
-                            <p>A fully accessible e-commerce platform built with React, Node.js, and MongoDB with WCAG AA compliance.</p>
-                            <div class="project-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Node.js</span>
-                                <span class="tag">Accessibility</span>
-                            </div>
-                            <a href="pages/projects.html#project-1" class="project-link">Learn More <span aria-hidden="true">→</span></a>
-                        </div>
-                    </article>
-                    
-                    <!-- Project Card 2 -->
-                    <article class="project-card" role="article">
-                        <div class="project-image">
-                            <img src="assets/project-2.jpg" alt="Task management application with real-time collaboration" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>Task Management App</h3>
-                            <p>Real-time collaborative task management with semantic HTML5, screen reader support, and keyboard navigation.</p>
-                            <div class="project-tags">
-                                <span class="tag">Vue.js</span>
-                                <span class="tag">Firebase</span>
-                                <span class="tag">PWA</span>
-                            </div>
-                            <a href="pages/projects.html#project-2" class="project-link">Learn More <span aria-hidden="true">→</span></a>
-                        </div>
-                    </article>
-                    
-                    <!-- Project Card 3 -->
-                    <article class="project-card" role="article">
-                        <div class="project-image">
-                            <img src="assets/project-3.jpg" alt="Design system documentation with interactive components" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>Design System</h3>
-                            <p>Comprehensive design system with accessible UI components, detailed documentation, and live examples.</p>
-                            <div class="project-tags">
-                                <span class="tag">Design System</span>
-                                <span class="tag">Storybook</span>
-                                <span class="tag">WCAG AA</span>
-                            </div>
-                            <a href="pages/projects.html#project-3" class="project-link">Learn More <span aria-hidden="true">→</span></a>
-                        </div>
-                    </article>
-                </div>
-                
-                <div class="view-all-projects">
-                    <a href="pages/projects.html" class="cta-button primary">View All Projects</a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Skills Section -->
-        <section class="skills" aria-labelledby="skills-heading">
-            <div class="container">
-                <h2 id="skills-heading">My Skills</h2>
-                
-                <div class="skills-grid">
-                    <!-- Frontend Skills -->
-                    <article class="skill-category">
-                        <h3>Frontend Development</h3>
-                        <ul>
-                            <li>Semantic HTML5</li>
-                            <li>CSS3 & SCSS</li>
-                            <li>JavaScript (ES6+)</li>
-                            <li>React & Vue.js</li>
-                            <li>WCAG Accessibility</li>
-                        </ul>
-                    </article>
-                    
-                    <!-- Backend Skills -->
-                    <article class="skill-category">
-                        <h3>Backend Development</h3>
-                        <ul>
-                            <li>Node.js & Express</li>
-                            <li>Python & Django</li>
-                            <li>RESTful APIs</li>
-                            <li>Database Design</li>
-                            <li>Authentication & Security</li>
-                        </ul>
-                    </article>
-                    
-                    <!-- Tools & Best Practices -->
-                    <article class="skill-category">
-                        <h3>Tools & Practices</h3>
-                        <ul>
-                            <li>Git & GitHub</li>
-                            <li>Testing & CI/CD</li>
-                            <li>Performance Optimization</li>
-                            <li>SEO Best Practices</li>
-                            <li>Agile Methodology</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Call to Action Section -->
-        <section class="cta-section" aria-labelledby="cta-heading">
-            <div class="container">
-                <h2 id="cta-heading">Ready to Work Together?</h2>
-                <p>I'm always interested in hearing about new projects and opportunities.</p>
-                <a href="pages/contact.html" class="cta-button primary large">Start a Conversation</a>
-            </div>
-        </section>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo" aria-label="Site footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About</h3>
-                <p>I'm passionate about building accessible, performant, and user-friendly web experiences.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="pages/about.html">About</a></li>
-                    <li><a href="pages/projects.html">Projects</a></li>
-                    <li><a href="pages/contact.html">Contact</a></li>
+
+            <!-- Task List -->
+            <div class="task-list-container">
+                <ul class="task-list" id="taskList">
+                    <!-- Tasks will be dynamically added here -->
                 </ul>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">🎯</div>
+                    <h3>No tasks yet</h3>
+                    <p>Add a task to get started!</p>
+                </div>
             </div>
-            
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <ul class="social-links">
-                    <li>
-                        <a href="https://github.com/karthikamara04-sudo" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile">
-                            GitHub
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile">
-                            LinkedIn
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Visit my Twitter profile">
-                            Twitter
-                        </a>
-                    </li>
-                </ul>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat">
+                    <span class="stat-label">Total Tasks:</span>
+                    <span class="stat-value" id="totalTasks">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Completed:</span>
+                    <span class="stat-value" id="completedCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Remaining:</span>
+                    <span class="stat-value" id="remainingCount">0</span>
+                </div>
             </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 Karthik Amara. All rights reserved.</p>
-            <p>Built with semantic HTML5, accessibility-first design, and ❤️</p>
-        </div>
-    </footer>
-    
-    <script src="js/main.js"></script>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="clearCompleted" class="action-btn clear-btn">
+                    Clear Completed
+                </button>
+                <button id="clearAll" class="action-btn delete-btn">
+                    Clear All Tasks
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
