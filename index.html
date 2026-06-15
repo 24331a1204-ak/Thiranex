@@ -3,85 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List Application</title>
+    <title>Real-Time Weather Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <!-- Header Section -->
         <header class="header">
-            <h1>📋 My Tasks</h1>
-            <p class="subtitle">Stay organized and productive</p>
+            <h1>🌤️ Weather Dashboard</h1>
+            <p class="subtitle">Real-time weather information at your fingertips</p>
         </header>
 
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Input Section -->
-            <div class="input-section">
-                <input
-                    type="text"
-                    id="taskInput"
-                    class="task-input"
-                    placeholder="Add a new task..."
-                    autocomplete="off"
-                />
-                <button id="addBtn" class="add-btn">
-                    <span class="btn-icon">+</span>
-                    <span class="btn-text">Add Task</span>
-                </button>
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="cityInput"
+                        class="city-input"
+                        placeholder="Enter city name (e.g., London, Tokyo, New York)..."
+                        autocomplete="off"
+                        aria-label="Search for city"
+                    />
+                    <button id="searchBtn" class="search-btn" aria-label="Search weather">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-text">Search</span>
+                    </button>
+                </div>
+                <div id="suggestions" class="suggestions-dropdown" role="listbox"></div>
             </div>
 
-            <!-- Filter Buttons -->
-            <div class="filter-section">
-                <button class="filter-btn active" data-filter="all">
-                    All <span class="filter-count">0</span>
-                </button>
-                <button class="filter-btn" data-filter="active">
-                    Active <span class="filter-count">0</span>
-                </button>
-                <button class="filter-btn" data-filter="completed">
-                    Completed <span class="filter-count">0</span>
-                </button>
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Fetching weather data...</p>
             </div>
 
-            <!-- Task List -->
-            <div class="task-list-container">
-                <ul class="task-list" id="taskList">
-                    <!-- Tasks will be dynamically added here -->
-                </ul>
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message hidden" role="alert"></div>
 
-                <!-- Empty State -->
-                <div class="empty-state" id="emptyState">
-                    <div class="empty-icon">🎯</div>
-                    <h3>No tasks yet</h3>
-                    <p>Add a task to get started!</p>
-                </div>
-            </div>
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message hidden" role="alert"></div>
 
-            <!-- Stats Section -->
-            <div class="stats-section">
-                <div class="stat">
-                    <span class="stat-label">Total Tasks:</span>
-                    <span class="stat-value" id="totalTasks">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Completed:</span>
-                    <span class="stat-value" id="completedCount">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-label">Remaining:</span>
-                    <span class="stat-value" id="remainingCount">0</span>
-                </div>
-            </div>
+            <!-- Current Weather Display -->
+            <section id="weatherDisplay" class="weather-display hidden">
+                <!-- Current Weather Card -->
+                <div class="weather-card main-weather-card">
+                    <div class="weather-header">
+                        <div class="location-info">
+                            <h2 id="cityName" class="city-name">--</h2>
+                            <p id="lastUpdated" class="last-updated">--</p>
+                        </div>
+                        <div id="weatherIcon" class="weather-icon">🌤️</div>
+                    </div>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button id="clearCompleted" class="action-btn clear-btn">
-                    Clear Completed
-                </button>
-                <button id="clearAll" class="action-btn delete-btn">
-                    Clear All Tasks
-                </button>
+                    <div class="temperature-section">
+                        <div class="current-temp">
+                            <span id="temperature" class="temp-value">--</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <p id="weatherDescription" class="weather-description">--</p>
+                    </div>
+
+                    <div class="feels-like">
+                        Feels like <span id="feelsLike">--</span>°C
+                    </div>
+                </div>
+
+                <!-- Weather Details Grid -->
+                <div class="weather-details-grid">
+                    <!-- Humidity Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">💧</span>
+                            <h3>Humidity</h3>
+                        </div>
+                        <div class="detail-value">
+                            <span id="humidity">--</span>
+                            <span class="detail-unit">%</span>
+                        </div>
+                    </div>
+
+                    <!-- Wind Speed Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">💨</span>
+                            <h3>Wind Speed</h3>
+                        </div>
+                        <div class="detail-value">
+                            <span id="windSpeed">--</span>
+                            <span class="detail-unit">m/s</span>
+                        </div>
+                    </div>
+
+                    <!-- Pressure Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">🔽</span>
+                            <h3>Pressure</h3>
+                        </div>
+                        <div class="detail-value">
+                            <span id="pressure">--</span>
+                            <span class="detail-unit">hPa</span>
+                        </div>
+                    </div>
+
+                    <!-- Visibility Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">👁️</span>
+                            <h3>Visibility</h3>
+                        </div>
+                        <div class="detail-value">
+                            <span id="visibility">--</span>
+                            <span class="detail-unit">km</span>
+                        </div>
+                    </div>
+
+                    <!-- UV Index Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">☀️</span>
+                            <h3>UV Index</h3>
+                        </div>
+                        <div class="detail-value">
+                            <span id="uvIndex">--</span>
+                            <span id="uvLevel" class="detail-unit">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Sunrise/Sunset Card -->
+                    <div class="detail-card">
+                        <div class="detail-header">
+                            <span class="detail-icon">🌅</span>
+                            <h3>Sunrise/Sunset</h3>
+                        </div>
+                        <div class="sunrise-sunset">
+                            <div>
+                                <p class="time-label">Sunrise</p>
+                                <p id="sunrise" class="time-value">--</p>
+                            </div>
+                            <div>
+                                <p class="time-label">Sunset</p>
+                                <p id="sunset" class="time-value">--</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="additional-info">
+                    <div class="info-card">
+                        <h3>Temperature Range</h3>
+                        <p>
+                            High: <span id="tempMax">--</span>°C | Low: <span id="tempMin">--</span>°C
+                        </p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Cloud Coverage</h3>
+                        <p><span id="cloudiness">--</span>%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h3>Search for a City</h3>
+                <p>Enter a city name to get started with real-time weather information</p>
             </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">OpenWeather API</a></p>
+            <p class="data-note">Data updates every time you search</p>
+        </footer>
     </div>
 
     <script src="app.js"></script>
