@@ -1,0 +1,31 @@
+{
+  "name": "thiranex-ecommerce",
+  "version": "1.0.0",
+  "description": "Production-ready E-commerce Product Catalog with modern web development practices",
+  "type": "module",
+  "scripts": {
+    "dev": "http-server . -p 8000",
+    "build": "npm run optimize && npm run minify",
+    "optimize": "node scripts/optimize-assets.js",
+    "minify": "node scripts/minify.js",
+    "serve": "http-server ./dist -p 3000",
+    "test": "jest",
+    "lint": "eslint .",
+    "lighthouse": "lighthouse http://localhost:3000 --view"
+  },
+  "keywords": [
+    "ecommerce",
+    "product-catalog",
+    "vanilla-js",
+    "responsive",
+    "accessible"
+  ],
+  "author": "Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "eslint": "^8.44.0",
+    "jest": "^29.5.0",
+    "lighthouse": "^10.0.0"
+  }
+}
